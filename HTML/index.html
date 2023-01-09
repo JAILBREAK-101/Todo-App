@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>MY TO-DO APP.</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <!-- <link rel="stylesheet" href="/css/all.min.css"> -->
+    <script src="https://kit.fontawesome.com/6a76efa062.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <aside>
+            <div class="aside-element-container">
+                <!-- <h3 style="text-align: center;">Connect with me:</h3> -->
+                <p>
+                    <a href="https://twitter.com/genixtech1" target="blank"><img
+                            src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg"
+                            alt="genixtech1" height="30" width="40" /></a>
+                    <a href="https://www.linkedin.com/in/oluwagbemiga-awosope-58173a242/" target="blank"><img
+                            src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg"
+                            alt="oluwagbemiga awosope" height="30" width="40" /></a>
+                    <a href="https://instagram.com/k.i.n.g_genix" target="blank"><img
+                            src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg"
+                            alt="k.i.n.g_genix" height="30" width="40" /></a>
+                    <a href="https://hashnode.com/@jailbreak" target="blank"><img
+                            src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/hashnode.svg"
+                            alt="@jailbreak" height="30" width="40" /></a>
+                    <a href="https://github.com/JAILBREAK-101" target="blank"><img
+                            src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/github.svg"
+                            alt="@jailbreak" height="30" width="40" /></a>
+                </p>
+            </div>
+        </aside>
+
+        <main>
+            <h1 id="header"><i>Todo App</i></h1>
+            <!-- the main todo -->
+            <div class="wrapper-for-todo">
+                <section class="client-side">
+                    <h2 class="total-number">Total number of To-dos: <span class="value">0</span></h2>
+                    <form action="/server" class="form" id="form">
+                        <label for="to-do-create" class="create-label">Add To-Do</label>
+                        <input type="search" name="create-todo" id="to-do-create" class="to-do-lists"
+                            placeholder="Type in your todo..." required>
+                        <!-- <input type="text" class="to-do-create" id="to-do" placeholder="Create your to-do"> -->
+                        <button class="create">Create</button>
+                    </form>
+                </section>
+                <!-- <input type="text" value="hii" name="" id="" disabled> -->
+
+                <section class="server-side">
+                    <div class="to-do-lists-area" id="todo-container">
+                        <!-- <input type="text" class="todo" disabled placeholder="Empty Todo"> -->
+                        <!-- For indicating Todos. -->
+                        <h3>Your To-dos.</h3>
+
+                        <!-- Amount of Todo text. -->
+                        <p class="view-default" style="font-style: italic; font-weight: 200">Empty List</p>
+
+                        <!-- delete and edit button. -->
+                        <ul class="todo-list">
+                            <!-- todos created, come in here in their own specific wrappers. -->
+                        </ul>
+                    </div>
+                    <!-- 
+                    <div class="set-buttons">
+                        <button class="btn">Active Todos</button>
+                        <button class="btn">Completed Todos</button>
+                        <button class="btn">Clear All Todos</button>
+                    </div> -->
+                </section>
+            </div>
+        </main>
+
+        <form class="div todo-edit">
+            <span id="close" class="close-button"></span>
+            <h2>Edit your Todo</h2>
+            <!-- <textarea name="text" class="edit" id="text" cols="40" rows="10"></textarea> -->
+            <input type="search" name="" id="" class="text-area-for-edit">
+            <button class="save-changes">SAVE CHANGES.</button>
+        </form>
+
+        <dialog class="dialog-box-delete" id="delete-box">
+            <h2>ARE YOU SURE THAT YOU WANT TO DELETE THIS TODO?</h2>
+            <div class="button-group" id="button-group">
+                <button class="btn1">Yes</button>
+                <button class="btn2">No</button>
+            </div>
+        </dialog>
+
+        <footer>
+            <p>Made with <b>&hearts;</b> by <a
+                    href='https://www.linkedin.com/in/oluwagbemiga-awosope-58173a242/'>JailBreak</a></p>
+        </footer>
+    </div>
+
+    <!-- <script src="app2.js"></script> -->
+    <script src="../JS/app3.js"></script>
+</body>
+
+</html>
