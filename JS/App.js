@@ -326,40 +326,37 @@ function creating_todo() {
       },
       { once: true }
     );
+
+    todo_radio_button.addEventListener("click", (e) => {
+      // If the user has done the todo (mark as completed).
+      if (todo_radio_button.checked == true) {
+        new_todo_text.style.textDecoration = "line-through";
+        new_todo_wrapper.style.backgroundColor = "hsla(0, 0%, 53%, 0.500)";
+        span_for_date.style.textDecoration = "line-through";
+        the_edit_btn.style.opacity = ".2";
+        the_delete_btn.style.opacity = ".2";
+        // No clicking events for buttons.
+        the_edit_btn.style.pointerEvents = "none";
+        the_delete_btn.style.pointerEvents = "none";
+        new_todo_text.style.pointerEvents = "none";
+      }
+      // otherwise...
+      else if (todo_radio_button.checked == false) {
+        new_todo_text.style.textDecoration = "none";
+        new_todo_wrapper.style.backgroundColor = "hsl(287, 82%, 19%)";
+        span_for_date.style.textDecoration = "none";
+        the_edit_btn.style.opacity = "initial";
+        the_delete_btn.style.opacity = "1";
+
+        // FOR WHEN WE HOVER.
+        the_edit_btn.style.opacity.hover = ".6";
+        // CLICKING EVENTS FOR BUTTON (available.).
+        the_edit_btn.style.pointerEvents = "all";
+        the_delete_btn.style.pointerEvents = "all";
+        new_todo_text.style.pointerEvents = "all";
+      }
+    });
   });
-
-  // RADIO BUTTON
-  // THE RADIO.
-  todo_radio_button.addEventListener("click", (e) => {
-    // If the user has done the todo (mark as completed).
-    if (todo_radio_button.checked == true) {
-      new_todo_text.style.textDecoration = "line-through";
-      new_todo_wrapper.style.backgroundColor = "hsla(0, 0%, 53%, 0.500)";
-      span_for_date.style.textDecoration = "line-through";
-      the_edit_btn.style.opacity = ".2";
-      the_delete_btn.style.opacity = ".2";
-      // No clicking events for buttons.
-      the_edit_btn.style.pointerEvents = "none";
-      the_delete_btn.style.pointerEvents = "none";
-      new_todo_text.style.pointerEvents = "none";
-    }
-    // otherwise...
-    else if (todo_radio_button.checked == false) {
-      new_todo_text.style.textDecoration = "none";
-      new_todo_wrapper.style.backgroundColor = "hsl(287, 82%, 19%)";
-      span_for_date.style.textDecoration = "none";
-      the_edit_btn.style.opacity = "initial";
-      the_delete_btn.style.opacity = "1";
-
-      // FOR WHEN WE HOVER.
-      the_edit_btn.style.opacity.hover = ".6";
-      // CLICKING EVENTS FOR BUTTON (available.).
-      the_edit_btn.style.pointerEvents = "all";
-      the_delete_btn.style.pointerEvents = "all";
-      new_todo_text.style.pointerEvents = "all";
-    }
-  });
-
   // RETRIEVE TODOS, WHEN WE COME BACK.
   document.onload = function () {
     for (let each_todo of todo_list_wrapper) {
@@ -370,4 +367,3 @@ function creating_todo() {
   };
 }
 
-// ======REFACTORED JAVASCRIPT ======
