@@ -20,18 +20,17 @@ const container_for_todo_area = document.getElementById("todo-container");
 // amount notificator.
 const stagnant_text = document.querySelector(".view-default");
 let total_number_of_todos = 0;
+stagnant_text.classList.remove("filter");
 
 // Todos Indicator
 const todo_indicator = document.querySelector("h3");
 todo_indicator.classList.add("description-header");
-todo_indicator.style.display = "none";
+todo_indicator.classList.add("filter");
 
 // for the buttons and the todo list itself.
 let todo_list_wrapper = document.querySelector(".todo-list");
 todo_list_wrapper.style.display = "none";
 todo_list_wrapper.classList.add("each-list-container");
-
-const todo_radio_button = document.querySelector("input");
 
 // SHOW DATE OPTION.
 // // the delete and edit buttons.
@@ -42,9 +41,9 @@ const todo_radio_button = document.querySelector("input");
 // for the delete interface.
 const button_group = document.getElementById("button-group");
 
-// const button_set = document.querySelector(".set-buttons");
-// const func_buttons = document.getElementsByClassName("btn");
-// let func_buttons2 = Array.from(func_buttons);
+const button_set = document.querySelector(".set-buttons");
+const func_buttons = document.getElementsByClassName("btn");
+let func_buttons2 = Array.from(func_buttons);
 
 // for the todo counter (of number of todos.)
 count = 0;
@@ -58,11 +57,6 @@ button_for_creation.addEventListener("click", (e) => {
   creating_todo();
 });
 
-// function reset_all() {
-//   total_number = 0;
-
-// }
-
 function creating_todo() {
   let all_todos = [];
   // array for all todos, when they are created.
@@ -72,9 +66,9 @@ function creating_todo() {
     alert("CAN'T LEAVE SPACE BLANK, ENTER A TODO");
     return textfield_for_creation;
   }
-  stagnant_text.style.display = "none";
+  stagnant_text.classList.add("filter");
   // Text should show
-  todo_indicator.style.display = "block";
+  todo_indicator.classList.remove("filter");
 
   const new_todo_wrapper = document.createElement("li");
   const todo_radio_button = document.createElement("input");
@@ -131,78 +125,96 @@ function creating_todo() {
   );
   todo_list_wrapper.append(new_todo_wrapper);
   all_todos.push(new_todo_wrapper);
-  // console.log(all_todos);
+  console.log(all_todos);
 
   // STORE TO LOCAL STORAGE, TO BE RETRIEVED.
   let STORAGE_KEY = new_todo_text.innerText;
   window.localStorage.setItem(`id ${STORAGE_KEY}`, new_todo_text.innerText);
 
+  // DEFAULT TEXT, INCASE OF EMPTY TODOS.
+  function show_default_text() {
+    todo_indicator.classList.add("filter");
+    stagnant_text.classList.remove("filter");
+  }
+
   // DISPLAY BASED ON FUNC BUTTONS CLICK.
-  // button_set.addEventListener("click", (e) => {
-  //   let target = e.target.closest("button");
-  //   console.log(target);
+  button_set.addEventListener("click", (e) => {
+    let target = e.target.closest("button");
+    console.log(target);
 
-  //   if (target == func_buttons[0]) {
-  //     all_todos.filter((incompleted) => {
-  //       if (todo_radio_button.checked === false) {
-  //         // console.log("---Incompleted---");
-  //         // console.log(incompleted);
-  //         todo_list_wrapper.append(incompleted);
-  //       }
-  //       if (all_todos.length == 0) {
-  //         incompleted = null;
-  //       }
-  //     });
-  //   }
-  //   if (target == func_buttons[1]) {
-  //     all_todos.filter((completed) => {
-  //       if (todo_radio_button.checked === true) {
-  //         // if (todo_radio_button.checked === false) {
-  //         // }
-  //         // console.log("---Completed---");
-  //         // console.log(completed);
-  //         todo_list_wrapper.append(completed);
-  //       }
-  //       if (all_todos.length == 0) {
-  //         completed = null;
-  //       }
-  //     });
-  //   }
-  // });
+    if (target == func_buttons[1]) {
+      all_todos.filter((incompleted) => {
+        !incompleted.classList.add("filter");
+        show_default_text();
+        if (todo_radio_button.checked === false) {
+          // console.log("---Incompleted---");
+          // console.log(incompleted);
+          todo_list_wrapper.append(incompleted);
+          incompleted.classList.remove("filter");
+        }
+        if (all_todos.length == 0) {
+          incompleted = null;
+        }
+      });
+    }
+    if (target == func_buttons[2]) {
+      all_todos.filter((completed) => {
+        !completed.classList.add("filter");
+        // No Completed -- show the texts below.
+        show_default_text();
+        if (todo_radio_button.checked === true) {
+          // if (todo_radio_button.checked === false) {
+          // }
+          // console.log("---Completed---");
+          // console.log(completed);
+          todo_list_wrapper.append(completed);
+          // BUT IF THERE'S COMPLETED...
+          completed.classList.remove("filter");
+          // if (completed) {
+          // }
+        }
+        if (all_todos.length == 0) {
+          completed = null;
+        }
+      });
+    }
+  });
 
-  // function clear_all_todos() {
-  //   for (let todos of Array.from(todo_list_wrapper.children)) {
-  //     todos.remove();
-  //     total_number_of_todos = 0;
-  //     todos_display_count.innerText = total_number_of_todos;
-  //     todo_list_wrapper.style.display = "none";
-  //   }
-  //   for (let todo of all_todos) {
-  //     all_todos.pop(todo);
-  //   }
-  //   stagnant_text.style.display = "block";
-  //   todo_indicator.style.display = "none";
-  // }
+  function clear_all_todos() {
+    for (let todos of Array.from(todo_list_wrapper.children)) {
+      todos.remove();
+      total_number_of_todos = 0;
+      todos_display_count.innerText = total_number_of_todos;
+      todo_list_wrapper.style.display = "none";
+    }
+    for (let todo of todo_list_wrapper) {
+      todo_list_wrapper.remove(todo);
+    }
+    stagnant_text.classList.remove("filter");
+    todo_indicator.style.display = "none";
+  }
 
   // GETTING TODOS BASED ON FUNC BUTTON
-  // func_buttons[0].addEventListener("click", () => {
-  // return all_todos.filter((incompleted) => {
-  //   if (todo_radio_button.checked === false) {
-  //     // console.log("---Incompleted---");
-  //     // console.log(incompleted);
-  //     todo_list_wrapper.append(incompleted);
-  //   }
-  //   if (all_todos.length == 0) {
-  //     incompleted = null;
-  //   }
-  // });
-  // });
+  func_buttons[0].addEventListener("click", () => {
+    console.log("WORKING");
+    // all_todos.map((todos) => {
+    if (todo_radio_button.checked === false) {
+      // console.log("---Incompleted---");
+      // console.log(incompleted);
+      todo_list_wrapper.append(new_todo_wrapper);
+      new_todo_wrapper.classList.remove("filter");
+    }
+    if (all_todos.length == 0) {
+      incompleted = null;
+    }
+    // });
+  });
 
-  // func_buttons[1].addEventListener("click", () => {});
+  func_buttons[3].onclick = function () {
+    // Clear all the todos (delete them)
+    clear_all_todos();
+  };
 
-  // func_buttons[2].onclick = function () {
-  //   clear_all_todos();
-  // };
   // class for styling each components.
   new_todo_wrapper.classList.add("list-content");
   new_todo_text.classList.add("new_todo");
@@ -254,7 +266,7 @@ function creating_todo() {
         todo_list_wrapper.style.display = "none";
         todo_indicator.remove();
       } else {
-        stagnant_text.style.display = "none";
+        stagnant_text.classList.add("filter");
       }
     });
 
@@ -327,33 +339,42 @@ function creating_todo() {
       { once: true }
     );
 
+    const todo_radio_button = document.querySelector(".radiobtn-for-todo");
+    console.log(todo_radio_button);
     todo_radio_button.addEventListener("click", (e) => {
       // If the user has done the todo (mark as completed).
       if (todo_radio_button.checked == true) {
-        new_todo_text.style.textDecoration = "line-through";
-        new_todo_wrapper.style.backgroundColor = "hsla(0, 0%, 53%, 0.500)";
-        span_for_date.style.textDecoration = "line-through";
-        the_edit_btn.style.opacity = ".2";
-        the_delete_btn.style.opacity = ".2";
-        // No clicking events for buttons.
-        the_edit_btn.style.pointerEvents = "none";
-        the_delete_btn.style.pointerEvents = "none";
-        new_todo_text.style.pointerEvents = "none";
+        // new_todo_text.style.textDecoration = "line-through";
+        // new_todo_wrapper.style.backgroundColor = "hsla(0, 0%, 53%, 0.500)";
+        // span_for_date.style.textDecoration = "line-through";
+        // the_edit_btn.style.opacity = ".2";
+        // the_delete_btn.style.opacity = ".2";
+        // // No clicking events for buttons.
+        // the_edit_btn.style.pointerEvents = "none";
+        // the_delete_btn.style.pointerEvents = "none";
+        // new_todo_text.style.pointerEvents = "none";
+
+        new_todo_text.classList.add("strikethrough-completed");
+        new_todo_wrapper.classList.add("date-completed");
+        span_for_date.classList.add("date-completed");
       }
       // otherwise...
       else if (todo_radio_button.checked == false) {
-        new_todo_text.style.textDecoration = "none";
-        new_todo_wrapper.style.backgroundColor = "hsl(287, 82%, 19%)";
-        span_for_date.style.textDecoration = "none";
-        the_edit_btn.style.opacity = "initial";
-        the_delete_btn.style.opacity = "1";
+        // new_todo_text.style.textDecoration = "none";
+        // new_todo_wrapper.style.backgroundColor = "hsl(287, 82%, 19%)";
+        // span_for_date.style.textDecoration = "none";
+        // the_edit_btn.style.opacity = "initial";
+        // the_delete_btn.style.opacity = "1";
 
         // FOR WHEN WE HOVER.
-        the_edit_btn.style.opacity.hover = ".6";
+        // the_edit_btn.style.opacity.hover = ".6";
         // CLICKING EVENTS FOR BUTTON (available.).
-        the_edit_btn.style.pointerEvents = "all";
-        the_delete_btn.style.pointerEvents = "all";
-        new_todo_text.style.pointerEvents = "all";
+        // the_edit_btn.style.pointerEvents = "all";
+        // the_delete_btn.style.pointerEvents = "all";
+        // new_todo_text.style.pointerEvents = "all";
+        new_todo_text.classList.remove("strikethrough-completed");
+        new_todo_wrapper.classList.remove("date-completed");
+        span_for_date.classList.remove("date-completed");
       }
     });
   });
@@ -366,4 +387,3 @@ function creating_todo() {
     }
   };
 }
-

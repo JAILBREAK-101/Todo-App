@@ -35,7 +35,7 @@ main {
 
 .container {
     align-items: center;
-    min-height: 100%;
+    /* min-height: 100%; */
 }
 
 #header {
@@ -63,7 +63,7 @@ label {
 }
 
 .client-side {
-    position: sticky;
+    /* position: sticky; */
     top: 10px;
     z-index: 1;
 }
@@ -193,6 +193,11 @@ label {
     cursor: grab;
     /* border: 2px solid white; */
     max-width: 600px;
+}
+
+/* FOR CHECKING MY COMPLETED TODO. */
+input[type="checkbox"]:checked {
+    /* display: none; */
 }
 
 
@@ -425,6 +430,38 @@ input[type='checkbox'] {
     scale: 1.5;
 }
 
+/* THE FUNCTIONALTITY BUTTONS. */
+.main-btn {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+/* FOR VISIBILITY FILTERING */
+.filter {
+    display: none;
+}
+
+/* STRIKE THROUGH (completed) */
+.date-completed,
+.strikethrough-completed {
+    text-decoration: line-through;
+    opacity: .2;
+    pointer-events: none;
+}
+
+.date-completed {
+    background-color: hsla(0, 0%, 53%, 0.500);
+}
+
+.undo-strikethrough {
+    background-color: hsl(287, 82%, 19%);
+    text-decoration: none;
+    opacity: 1;
+    pointer-events: all;
+}
+
 /* FOOTER */
 footer {
     font-size: 1.1rem;
@@ -448,8 +485,28 @@ footer b {
     font-size: 1.5em;
 }
 
-@media (max-width: 425px) {
+@media only screen and (max-width: 768px) {
     html {
-        font-size: 28px;
+        font-size: 1.1rem;
     }
+
+    body {
+        /* height: 20vh; */
+        /* background-size: contain; */
+    }
+
+    /* THE ASIDE FOR PERSONAL SOCIAL LINKS. */
+    .aside-element-container {
+        display: none;
+        position: absolute;
+        left: 200px;
+        top: 600px;
+        width: auto;
+    }
+
+    .aside-element-container p {
+        flex-direction: row;
+    }
+
+    /* .container {} */
 }
