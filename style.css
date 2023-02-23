@@ -438,6 +438,17 @@ input[type='checkbox'] {
     gap: 1rem;
 }
 
+/* Each buttons (functional) */
+.btn {
+    border: 0;
+    padding: 1rem .5rem;
+    background: white;
+    color: blue;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
 /* FOR VISIBILITY FILTERING */
 .filter {
     display: none;
