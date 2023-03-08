@@ -15,6 +15,24 @@ html {
     --transition-for-all-btn: 0.4s background-color ease-in-out;
 }
 
+/* UTILITY CLASSES */
+.hidden-class {
+    display: none;
+}
+
+.show-class {
+    display: block;
+}
+
+.visible-none {
+    visibility: none;
+}
+
+.visible-show {
+    visibility: visible;
+}
+/* END OF UTILITY CLASSES. */
+
 body {
     width: 100vw;
     height: 100vh;
