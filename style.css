@@ -20,7 +20,7 @@ body {
     height: 100vh;
     margin: 0 auto;
     overflow-x: hidden;
-    background-image: url(../IMAGES/milad-fakurian-bexwsdM5BCw-unsplash.jpg);
+    background-image: url('../IMAGES/milad-fakurian-bexwsdM5BCw-unsplash.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
