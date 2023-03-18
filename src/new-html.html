@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY TODO APP</title>
+    <link rel="stylesheet" href="./new-style.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Where everything would be, from interface to logic, to styles. -->
+        <section class="create-section">
+            <header class="nav-header">
+                <h1 class="myn-todo">
+                    <img class="logo-image" src="" alt="">
+                    MYN TODO
+                </h1>
+                <nav>
+                    <button class="toggle"><img src="../assets/images-icons/icon-hamburger.svg" alt=''></button>
+                </nav>
+            </header>
+
+            <input type="search" name="todo-create" id="todo-create">
+            <button class="create-todo">Create</button>
+        </section>
+
+        <!-- the todo container (where the todos will be in) -->
+        <section class="todo-container">
+            <main>
+                <!-- the upper part in the todo container -->
+                <section class="container-header">
+                    <img class="logo-image" src="" alt="">
+                    <h2>Your Tasks <span class="count">0</span></h2>
+                    <button class="three-dots"><img src="" alt=""></button>
+                </section>
+
+                <ul class="todo-list">
+                    <!-- the Lis will come inside here -->
+                </ul>
+
+                <section class="function-buttons">
+                    <button class="btn view-all">View all Todos</button>
+                    <button class="btn active">Active Todos</button>
+                    <button class="btn completed">Completed Todos</button>
+                    <button class="btn clear">Clear Todos</button>
+                </section>
+            </main>
+        </section>
+
+        <!-- the modals and re-appearing interfaces. -->
+        <section class="modals">
+            <div class="sign-in-log-in"></div>
+            <div class="confirm-edit"></div>
+            <div class="confirm-delete"></div>
+        </section>
+    </div>
+</body>
+
+<!-- <script src="main.ts"></script> -->
+<script src="./script.js"></script>
+
+</html>

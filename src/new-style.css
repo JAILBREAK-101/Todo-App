@@ -1,0 +1,56 @@
+/* WHERE THE STYLES OF THE APP COME TO. */
+
+/* root styles */
+:root {
+    /* layout */
+    --justify-content: content;
+    --align-items: center;
+
+    /* Light/Default Mode Pictures */
+    --primary-color: hsl(0, 0%, 100%);
+    --secondary-color: hsl(0, 0%, 2%);
+    --tetiary-color: hsl(48, 57%, 48%);
+
+    /* Dark Mode Colors */
+    --primary-color-2: hsl(0, 0%, 2%);
+    --secondary-color-2: hsl(0, 0%, 100%);
+    --tetiary-color-2: hsl(273, 64%, 42%);
+
+    /* Pixel, rems and ems related styles variables */
+    --gen-border-radius: ;
+    --gen-box-shadow: ;
+    --gen-container-size: ;
+
+    /* mobile responsiveness */
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* header styles */
+.nav-header,
+.container-header {
+    display: flex;
+    align-items: var(--align-items);
+    justify-content: space-between;
+}
+
+/* main styles */
+.main-container {}
