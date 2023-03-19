@@ -11,7 +11,7 @@ html {
 }
 
 :root {
-    --each-list-bgclr: linear-gradient(45deg, red, black);
+    --each-list-bgclr: linear-gradient(60deg, rgb(35, 1, 35), rgb(116, 11, 116), rgb(235, 86, 235));
     --transition-for-all-btn: 0.4s background-color ease-in-out;
     --general-font-size: 2rem;
     --mini-font-size: 1.5rem;
@@ -42,7 +42,8 @@ body {
     /* height: 100vh; */
     margin: 0 auto;
     overflow-x: hidden;
-    background-image: url('../IMAGES/milad-fakurian-bexwsdM5BCw-unsplash.jpg');
+    /* background-image: url('./IMAGES/milad-fakurian-bexwsdM5BCw-unsplash.jpg'); */
+    background: var(--each-list-bgclr);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -139,7 +140,7 @@ label {
 
 .to-do-lists-area {
     box-shadow: -5px 5px 10px 0 rgba(0, 0, 20, 0.30);
-    background: linear-gradient(45deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+    background: linear-gradient(45deg, rgb(87, 221, 255), rgb(192, 88, 243));
     padding: 5px 25px;
     min-height: 100%;
     min-width: 200px;
@@ -155,7 +156,7 @@ label {
 .description-header {
     color: rgb(235, 232, 214);
     font-weight: 800;
-    background: linear-gradient(64deg, rgb(255, 200, 0), purple);
+    background: linear-gradient(64deg, rgb(34, 255, 0), purple);
     /* -webkit-text-fill-color: rgba(16, 16, 20, 0.661); */
     border-radius: 20px;
     padding: 10px;
@@ -166,7 +167,7 @@ label {
 /* The Total numbers indicator. */
 .total-number {
     color: white;
-    background: linear-gradient(45deg, hsl(240, 100%, 50%), rgb(175, 167, 167), lightblue);
+    background: linear-gradient(45deg, rgb(34, 255, 0), rgb(175, 167, 167), lightblue);
     /* -webkit-text-fill-color: white; */
     border-radius: 10px;
     text-shadow: -5px 0 hsl(287, 82%, 19%, .75);
