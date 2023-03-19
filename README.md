@@ -1,5 +1,5 @@
 # Todo-App
-Welcome to my first Project Built with HTML, CSS and JavaScript
+Welcome to my first Project built with HTML, CSS and JavaScript
 
 Check out and store your Todo. https://jailbreak-101.github.io/Todo-App
 
