@@ -59,6 +59,7 @@ button_for_creation.addEventListener("click", (e) => {
 
 function creating_todo() {
   let all_todos = [];
+  console.log(all_todos);
   // array for all todos, when they are created.
 
   // if they refuse to type in anything.
@@ -112,6 +113,7 @@ function creating_todo() {
   let save_changes = document.createElement("p");
   save_changes.classList.add("updated-time");
 
+  todo_radio_button.classList.add(".radiobtn-for-todo");
   // Get the Day, Month and Year the Todo was created.
 
   //  PUT EVERYTHING INSIDE THE LI.
@@ -124,8 +126,8 @@ function creating_todo() {
     save_changes
   );
   todo_list_wrapper.append(new_todo_wrapper);
+  // console.log(all_todos);
   all_todos.push(new_todo_wrapper);
-  console.log(all_todos);
 
   // STORE TO LOCAL STORAGE, TO BE RETRIEVED.
   let STORAGE_KEY = new_todo_text.innerText;
@@ -133,19 +135,25 @@ function creating_todo() {
 
   // DEFAULT TEXT, INCASE OF EMPTY TODOS.
   function show_default_text() {
-    todo_indicator.classList.add("filter");
-    stagnant_text.classList.remove("filter");
+    if (new_todo_wrapper.children == 0) {
+      todo_indicator.classList.add("filter");
+      stagnant_text.classList.remove("filter");
+    } else {
+      todo_indicator.classList.remove("filter");
+      stagnant_text.classList.add("filter");
+    }
   }
 
   // DISPLAY BASED ON FUNC BUTTONS CLICK.
   button_set.addEventListener("click", (e) => {
     let target = e.target.closest("button");
-    console.log(target);
 
-    if (target == func_buttons[1]) {
+    if (target == func_buttons[0]) {
+      todo_indicator.innerText = "Active Todos";
       all_todos.filter((incompleted) => {
         !incompleted.classList.add("filter");
         show_default_text();
+        // todo_count.innerText = [incompleted].length;
         if (todo_radio_button.checked === false) {
           // console.log("---Incompleted---");
           // console.log(incompleted);
@@ -157,11 +165,12 @@ function creating_todo() {
         }
       });
     }
-    if (target == func_buttons[2]) {
+    if (target == func_buttons[1]) {
+      todo_indicator.innerText = "Completed Todos";
       all_todos.filter((completed) => {
         !completed.classList.add("filter");
-        // No Completed -- show the texts below.
         show_default_text();
+        // todo_count.innerText = [todo_radio_button.checked == true].length;
         if (todo_radio_button.checked === true) {
           // if (todo_radio_button.checked === false) {
           // }
@@ -180,6 +189,13 @@ function creating_todo() {
     }
   });
 
+  // function findFuncButton(eventObject) {
+  //   if (eventObject) {
+
+  //   }
+  // }
+
+  // CLEAR ALL TODOS WHEN BUTTON IS CLICKED
   function clear_all_todos() {
     for (let todos of Array.from(todo_list_wrapper.children)) {
       todos.remove();
@@ -191,35 +207,37 @@ function creating_todo() {
       todo_list_wrapper.remove(todo);
     }
     stagnant_text.classList.remove("filter");
+    // todo_indicator.innerText = "Your Todos";
     todo_indicator.style.display = "none";
   }
 
-  // GETTING TODOS BASED ON FUNC BUTTON
-  func_buttons[0].addEventListener("click", () => {
-    console.log("WORKING");
-    // all_todos.map((todos) => {
-    if (todo_radio_button.checked === false) {
-      // console.log("---Incompleted---");
-      // console.log(incompleted);
-      todo_list_wrapper.append(new_todo_wrapper);
-      new_todo_wrapper.classList.remove("filter");
-    }
-    if (all_todos.length == 0) {
-      incompleted = null;
-    }
-    // });
-  });
-
-  func_buttons[3].onclick = function () {
+  func_buttons[2].onclick = function () {
     // Clear all the todos (delete them)
     clear_all_todos();
   };
+
+  todo_radio_button.addEventListener("click", (e) => {
+    // If the user has done the todo (mark as completed).
+    if (todo_radio_button.checked == true) {
+      new_todo_text.classList.add("strikethrough-completed");
+      new_todo_wrapper.classList.add("date-completed");
+      span_for_date.classList.add("date-completed");
+      todo_radio_button.classList.add("pointer-events-on");
+    }
+    // otherwise...
+    else if (todo_radio_button.checked == false) {
+      new_todo_text.classList.remove("strikethrough-completed");
+      new_todo_wrapper.classList.remove("date-completed");
+      span_for_date.classList.remove("date-completed");
+    }
+  });
 
   // class for styling each components.
   new_todo_wrapper.classList.add("list-content");
   new_todo_text.classList.add("new_todo");
   todo_list_wrapper.style.display = "flex";
 
+  // Clear textfield after creation of new Todo for another one to be created
   textfield_for_creation.value = "";
 
   // For the total number of Todos created.
@@ -250,8 +268,7 @@ function creating_todo() {
     button1_yes.addEventListener("click", () => {
       // logic for deletion
       new_todo_wrapper.remove();
-      // let deleted_value = renewed_value--;
-      // let show_value = deleted_value-1;4
+      all_todos.pop(new_todo_wrapper);
       total_number();
 
       // let decrementing = incrementing - 1;
@@ -292,7 +309,7 @@ function creating_todo() {
     body_of_contents.style.pointerEvents = "none";
 
     const close_button = document.getElementById("close");
-    close_button.innerHTML = "X";
+
     close_button.style.fontStyle = "bold";
     // edit_box.append(close_button);
 
@@ -308,8 +325,8 @@ function creating_todo() {
     const save_changes = document.querySelector(".save-changes");
     // edit_box_field.required = true;
     save_changes.classList.add("save-changes");
-    save_changes.innerHTML = "SAVE CHANGES.";
-    edit_box.append(save_changes);
+    save_changes.innerHTML = "✅Save Changes";
+    // edit_box.append(save_changes);
     // WHAT HAPPENS WHEN WE CLICK THE SAVE CHANGES BUTTON?
     save_changes.addEventListener(
       "click",
@@ -338,52 +355,13 @@ function creating_todo() {
       },
       { once: true }
     );
-
-    const todo_radio_button = document.querySelector(".radiobtn-for-todo");
-    console.log(todo_radio_button);
-    todo_radio_button.addEventListener("click", (e) => {
-      // If the user has done the todo (mark as completed).
-      if (todo_radio_button.checked == true) {
-        // new_todo_text.style.textDecoration = "line-through";
-        // new_todo_wrapper.style.backgroundColor = "hsla(0, 0%, 53%, 0.500)";
-        // span_for_date.style.textDecoration = "line-through";
-        // the_edit_btn.style.opacity = ".2";
-        // the_delete_btn.style.opacity = ".2";
-        // // No clicking events for buttons.
-        // the_edit_btn.style.pointerEvents = "none";
-        // the_delete_btn.style.pointerEvents = "none";
-        // new_todo_text.style.pointerEvents = "none";
-
-        new_todo_text.classList.add("strikethrough-completed");
-        new_todo_wrapper.classList.add("date-completed");
-        span_for_date.classList.add("date-completed");
-      }
-      // otherwise...
-      else if (todo_radio_button.checked == false) {
-        // new_todo_text.style.textDecoration = "none";
-        // new_todo_wrapper.style.backgroundColor = "hsl(287, 82%, 19%)";
-        // span_for_date.style.textDecoration = "none";
-        // the_edit_btn.style.opacity = "initial";
-        // the_delete_btn.style.opacity = "1";
-
-        // FOR WHEN WE HOVER.
-        // the_edit_btn.style.opacity.hover = ".6";
-        // CLICKING EVENTS FOR BUTTON (available.).
-        // the_edit_btn.style.pointerEvents = "all";
-        // the_delete_btn.style.pointerEvents = "all";
-        // new_todo_text.style.pointerEvents = "all";
-        new_todo_text.classList.remove("strikethrough-completed");
-        new_todo_wrapper.classList.remove("date-completed");
-        span_for_date.classList.remove("date-completed");
-      }
-    });
   });
   // RETRIEVE TODOS, WHEN WE COME BACK.
-  document.onload = function () {
-    for (let each_todo of todo_list_wrapper) {
-      for (let object of localStorage) {
-        new_todo_text.innerText = object;
-      }
-    }
-  };
+  // document.onload = function () {
+  //   for (let each_todo of todo_list_wrapper) {
+  //     for (let object of localStorage) {
+  //       new_todo_text.innerText = object;
+  //     }
+  //   }
+  // };
 }

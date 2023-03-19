@@ -1,12 +1,6 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
-        "content": {
-            "root": "./dist",
-            ""
-        }
-    },
-    "exclude": [
-        "node_modules"
-    ]
+        "rootDir": "./src",
+        "outDir": "./dist",
+    }
 }

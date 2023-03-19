@@ -1,0 +1,6 @@
+# Ignore some files and folders to be pushed to GitHub
+/dist
+/reserved-code
+/assets
+/vscode
+.json
